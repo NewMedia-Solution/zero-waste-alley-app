@@ -1,4 +1,5 @@
 export type AllStates = {
+  isLogin: boolean
   id: string | null
   name: string | null
   phoneNumber: string | null
@@ -7,4 +8,4 @@ export type AllStates = {
   detailAddress: string | null
 }
 
-export type AnyStates = string | null
+export type AnyStates = boolean | string | null
