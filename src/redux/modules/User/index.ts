@@ -2,8 +2,11 @@ import * as States from './stateTypes'
 import * as Actions from './actionTypes'
 import type * as Types from './types'
 
-export const login: Actions.ILogin = () => ({
-  type: Actions.LOGIN,
+export const setIsLogin: Actions.ISetIsLogin = (isLogin) => ({
+  type: Actions.SET_IS_LOGIN,
+  payload: {
+    isLogin: isLogin,
+  },
 })
 
 export const setUserInfo: Actions.ISetUserInfo = () => ({
@@ -26,8 +29,8 @@ const initialState: States.AllStates = {
 
 const reducer: Types.IReducer = (state = initialState, action) => {
   switch (action.type) {
-    case Actions.LOGIN:
-      return {...state, isLogin: true}
+    case Actions.SET_IS_LOGIN:
+      return { ...state, isLogin: action.payload.isLogin }
     case Actions.SET_USER_INFO:
       return { ...state, id: action.payload.id, name: action.payload.name }
     default:
