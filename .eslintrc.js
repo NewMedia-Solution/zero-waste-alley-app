@@ -1,8 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-  ],
+  plugins: ['@typescript-eslint'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -22,4 +20,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier',
   ],
-};
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
+}
