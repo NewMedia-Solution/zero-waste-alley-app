@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint **/*.{ts,tsx}"
+    "lint": "eslint '**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@actbase/react-daum-postcode": "^1.0.4",
