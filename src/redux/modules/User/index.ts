@@ -1,6 +1,8 @@
 import * as States from './stateTypes'
 import * as Actions from './actionTypes'
 import type * as Types from './types'
+import ApiHelper from '../../../helpers/ApiHelper'
+import { Alert } from 'react-native'
 
 export const setIsLogin: Actions.ISetIsLogin = (isLogin) => ({
   type: Actions.SET_IS_LOGIN,
@@ -39,3 +41,35 @@ const reducer: Types.IReducer = (state = initialState, action) => {
 }
 
 export default reducer
+
+export const checkId: Types.ICheckId = (id) => async () => {
+  try {
+    const path = '/api/user/checkId'
+    const body = JSON.stringify({
+      id: id,
+    })
+
+    const { response, json } = await ApiHelper.post(path, body)
+
+    const result: Types.CheckIdReturnType = {
+      isApiSuccess: response.ok,
+    }
+
+    if (response.ok) {
+      result.state = json.state
+      result.message = json.message
+
+      return result
+    } else {
+      Alert.alert('', '서버 연결에 실패했습니다.')
+
+      return result
+    }
+  } catch (error: any) {
+    Alert.alert('', error.toString())
+
+    return {
+      isApiSuccess: false,
+    }
+  }
+}
