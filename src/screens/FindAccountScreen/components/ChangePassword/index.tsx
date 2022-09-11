@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import { Colors, FontFamily } from '../../../../Constants'
 import { TitleWithRequiredMark } from '../../../../components/TitleWithRequiredMark'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const ChangePassword = () => {
   const [password, setPassword] = useState('')
@@ -47,6 +48,17 @@ const ChangePassword = () => {
               패스워드가 일치하지 않습니다.
             </Text>
           )}
+        </View>
+        <View style={styles.infoContainer}>
+          <MaterialCommunityIcons
+            name={'information-outline'}
+            size={25}
+            color={Colors.blue}
+          />
+          <Text style={styles.infoContent}>
+            정보보호를 위해 패스워드 찾기 기능은 지원하지 않고,{'\n'}대신
+            패스워드 변경을 권장합니다.
+          </Text>
         </View>
       </View>
       <TouchableHighlight
@@ -96,6 +108,21 @@ const styles = StyleSheet.create({
     top: 36,
     fontFamily: FontFamily.medium,
     fontSize: 12,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 40,
+    padding: 10,
+    borderWidth: 2,
+    borderColor: Colors.blue,
+  },
+  infoContent: {
+    flexShrink: 1,
+    marginLeft: 5,
+    fontFamily: FontFamily.medium,
+    fontSize: 12,
+    color: Colors.black,
   },
   changePasswordButton: {
     width: '100%',
