@@ -73,3 +73,36 @@ export const checkId: Types.ICheckId = (id) => async () => {
     }
   }
 }
+
+export const login: Types.ILogin = (id, password) => async () => {
+  try {
+    const path = '/api/user/login'
+    const body = JSON.stringify({
+      id: id,
+      password: password,
+    })
+
+    const { response, json } = await ApiHelper.post(path, body)
+
+    const result: Types.LoginReturnType = {
+      isApiSuccess: response.ok,
+    }
+
+    if (response.ok) {
+      result.state = json.state
+      result.message = json.message
+
+      return result
+    } else {
+      Alert.alert('', '서버 연결에 실패했습니다.')
+
+      return result
+    }
+  } catch (error: any) {
+    Alert.alert('', error.toString())
+
+    return {
+      isApiSuccess: false,
+    }
+  }
+}

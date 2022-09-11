@@ -22,3 +22,19 @@ export type ICheckId = (
   null,
   Actions.AnyActionTypes
 >
+
+export type LoginReturnType = {
+  isApiSuccess: boolean
+  state?: boolean
+  message?: string
+}
+
+export type ILogin = (
+  id: string,
+  password: string
+) => ThunkAction<
+  Promise<LoginReturnType>,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>
