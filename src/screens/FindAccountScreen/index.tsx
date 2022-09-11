@@ -1,8 +1,9 @@
 import React from 'react'
-import { View } from 'react-native'
+import ChangePassword from './components/ChangePassword'
+import FindId from './components/FindId'
 
-const FindAccountScreen = () => {
-  return <View></View>
+const FindAccountScreen = ({ route }: any) => {
+  return route.params.via === 'findPassword' ? <ChangePassword /> : <FindId />
 }
 
 export default FindAccountScreen
