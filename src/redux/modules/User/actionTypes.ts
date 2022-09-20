@@ -1,3 +1,5 @@
+import type * as States from './stateTypes'
+
 export const SET_IS_LOGIN = 'User/SET_IS_LOGIN'
 export const SET_USER_INFO = 'User/SET_USER_INFO'
 
@@ -10,14 +12,11 @@ type SetIsLoginAction = {
 
 type SetUserInfoAction = {
   type: typeof SET_USER_INFO
-  payload: {
-    id: string
-    name: string
-  }
+  payload: States.UserInfo
 }
 
 export type AnyActionTypes = SetIsLoginAction | SetUserInfoAction
 
 export type ISetIsLogin = (isLogin: boolean) => SetIsLoginAction
 
-export type ISetUserInfo = () => SetUserInfoAction
+export type ISetUserInfo = (userInfo: States.UserInfoJson) => SetUserInfoAction

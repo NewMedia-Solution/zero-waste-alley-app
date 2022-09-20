@@ -11,11 +11,16 @@ export const setIsLogin: Actions.ISetIsLogin = (isLogin) => ({
   },
 })
 
-export const setUserInfo: Actions.ISetUserInfo = () => ({
+export const setUserInfo: Actions.ISetUserInfo = (userInfo) => ({
   type: Actions.SET_USER_INFO,
   payload: {
-    id: '',
-    name: '',
+    id: userInfo.id,
+    name: userInfo.name,
+    phoneNumber: userInfo.phoneNum,
+    email: userInfo.email,
+    address: userInfo.address1,
+    detailAddress: userInfo.address2,
+    isAdmin: userInfo.adminYn,
   },
 })
 
@@ -27,6 +32,7 @@ const initialState: States.AllStates = {
   email: null,
   address: null,
   detailAddress: null,
+  isAdmin: false,
 }
 
 const reducer: Types.IReducer = (state = initialState, action) => {
@@ -34,7 +40,16 @@ const reducer: Types.IReducer = (state = initialState, action) => {
     case Actions.SET_IS_LOGIN:
       return { ...state, isLogin: action.payload.isLogin }
     case Actions.SET_USER_INFO:
-      return { ...state, id: action.payload.id, name: action.payload.name }
+      return {
+        ...state,
+        id: action.payload.id,
+        name: action.payload.name,
+        phoneNumber: action.payload.phoneNumber,
+        email: action.payload.email,
+        address: action.payload.address,
+        detailAddress: action.payload.detailAddress,
+        isAdmin: action.payload.isAdmin,
+      }
     default:
       return state
   }
