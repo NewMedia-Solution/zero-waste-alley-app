@@ -38,3 +38,16 @@ export type ILogin = (
   null,
   Actions.AnyActionTypes
 >
+
+export type GetUserInfoType = {
+  isApiSuccess: boolean
+}
+
+export type IGetUserInfo = (
+  id: string
+) => ThunkAction<
+  Promise<GetUserInfoType>,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>

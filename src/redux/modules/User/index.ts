@@ -121,3 +121,34 @@ export const login: Types.ILogin = (id, password) => async () => {
     }
   }
 }
+
+export const getUserInfo: Types.IGetUserInfo = (id) => async (dispatch) => {
+  try {
+    const path = '/api/user/loadInfo'
+    const body = JSON.stringify({
+      id: id,
+    })
+
+    const { response, json } = await ApiHelper.post(path, body)
+
+    const result: Types.GetUserInfoType = {
+      isApiSuccess: response.ok,
+    }
+
+    if (response.ok) {
+      dispatch(setUserInfo(json as States.UserInfoJson))
+
+      return result
+    } else {
+      Alert.alert('', '서버 연결에 실패했습니다.')
+
+      return result
+    }
+  } catch (error: any) {
+    Alert.alert('', error.toString())
+
+    return {
+      isApiSuccess: false,
+    }
+  }
+}
