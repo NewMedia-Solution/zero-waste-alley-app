@@ -1,20 +1,20 @@
 export type UserInfoJson = {
-  id: string
-  name: string
-  phoneNum: string
-  email: string
-  address1: string
-  address2: string
+  id: string | null
+  name: string | null
+  phoneNum: string | null
+  email: string | null
+  address1: string | null
+  address2: string | null
   adminYn: boolean
 }
 
 export type UserInfo = {
-  id: string
-  name: string
-  phoneNumber: string
-  email: string
-  address: string
-  detailAddress: string
+  id: string | null
+  name: string | null
+  phoneNumber: string | null
+  email: string | null
+  address: string | null
+  detailAddress: string | null
   isAdmin: boolean
 }
 

@@ -3,6 +3,7 @@ import * as Actions from './actionTypes'
 import type * as Types from './types'
 import ApiHelper from '../../../helpers/ApiHelper'
 import { Alert } from 'react-native'
+import { removeStorageData } from '../../../services/AsyncStorageService'
 
 export const setIsLogin: Actions.ISetIsLogin = (isLogin) => ({
   type: Actions.SET_IS_LOGIN,
@@ -65,6 +66,23 @@ const reducer: Types.IReducer = (state = initialState, action) => {
 }
 
 export default reducer
+
+export const logout: Types.ILogout = () => async (dispatch) => {
+  dispatch(setIsLogin(false))
+  dispatch(
+    setUserInfo({
+      id: null,
+      name: null,
+      phoneNum: null,
+      email: null,
+      address1: null,
+      address2: null,
+      adminYn: false,
+    })
+  )
+
+  removeStorageData('id')
+}
 
 export const checkId: Types.ICheckId = (id) => async () => {
   try {

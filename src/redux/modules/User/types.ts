@@ -8,6 +8,13 @@ export type IReducer = (
   action: Actions.AnyActionTypes
 ) => States.AllStates
 
+export type ILogout = () => ThunkAction<
+  void,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>
+
 export type CheckIdReturnType = {
   isApiSuccess: boolean
   state?: boolean
