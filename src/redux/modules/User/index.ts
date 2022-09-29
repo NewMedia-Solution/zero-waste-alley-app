@@ -3,7 +3,10 @@ import * as Actions from './actionTypes'
 import type * as Types from './types'
 import ApiHelper from '../../../helpers/ApiHelper'
 import { Alert } from 'react-native'
-import { removeStorageData } from '../../../services/AsyncStorageService'
+import {
+  removeStorageData,
+  saveToStorage,
+} from '../../../services/AsyncStorageService'
 
 export const setIsLogin: Actions.ISetIsLogin = (isLogin) => ({
   type: Actions.SET_IS_LOGIN,
@@ -116,7 +119,7 @@ export const checkId: Types.ICheckId = (id) => async () => {
   }
 }
 
-export const login: Types.ILogin = (id, password) => async () => {
+export const login: Types.ILogin = (id, password) => async (dispatch) => {
   try {
     const path = '/api/user/login'
     const body = JSON.stringify({
@@ -133,6 +136,9 @@ export const login: Types.ILogin = (id, password) => async () => {
     if (response.ok) {
       result.state = json.state
       result.message = json.message
+
+      dispatch(setId(id))
+      await saveToStorage('id', id)
 
       return result
     } else {
