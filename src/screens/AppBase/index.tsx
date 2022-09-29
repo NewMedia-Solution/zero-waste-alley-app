@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ROUTE_NAMES } from '../../RouteNames'
 import { Routes } from '../../Routes'
 import { Colors, FontFamily } from '../../Constants'
 import { NavigationOptions } from './types'
+import { useDispatch, useSelector } from 'react-redux'
+import { initStorageData } from '../../services/AsyncStorageService'
+import { getUserInfo, setIsLogin } from '../../redux/modules/User'
 
 const Stack = createNativeStackNavigator()
 
@@ -29,6 +32,28 @@ const navigationOptions: NavigationOptions = (title, isShowing = true) => {
 }
 
 const AppBase = () => {
+  const dispatch: any = useDispatch()
+
+  const id = useSelector<any>((state) => state.User.id)
+
+  useEffect(() => {
+    dispatch(initStorageData())
+  }, [])
+
+  useEffect(() => {
+    if (id) {
+      requestUserInfo()
+    }
+  }, [id])
+
+  const requestUserInfo = async () => {
+    const { isApiSuccess } = await dispatch(getUserInfo(id as string))
+
+    if (isApiSuccess) {
+      dispatch(setIsLogin(true))
+    }
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={ROUTE_NAMES.MAIN_SCREEN}>
