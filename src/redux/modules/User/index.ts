@@ -11,6 +11,13 @@ export const setIsLogin: Actions.ISetIsLogin = (isLogin) => ({
   },
 })
 
+export const setId: Actions.ISetId = (id) => ({
+  type: Actions.SET_ID,
+  payload: {
+    id: id,
+  },
+})
+
 export const setUserInfo: Actions.ISetUserInfo = (userInfo) => ({
   type: Actions.SET_USER_INFO,
   payload: {
@@ -39,6 +46,8 @@ const reducer: Types.IReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.SET_IS_LOGIN:
       return { ...state, isLogin: action.payload.isLogin }
+    case Actions.SET_ID:
+      return { ...state, id: action.payload.id }
     case Actions.SET_USER_INFO:
       return {
         ...state,
