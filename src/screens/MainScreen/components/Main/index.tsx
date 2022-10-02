@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import logo from '../../../../../assets/images/logo.png'
 import { Colors } from '../../../../Constants'
 import { ROUTE_NAMES } from '../../../../RouteNames'
-import { NavigationiService } from '../../../../services/NavigationiService'
+import { NavigationService } from '../../../../services/NavigationService'
 import { FontFamily } from '../../../../Constants'
 import { useDispatch } from 'react-redux'
 
@@ -12,15 +12,15 @@ export const MainComponent = () => {
   const dispatch = useDispatch()
 
   const onPressScanButton = () => {
-    NavigationiService.navigate(ROUTE_NAMES.QR_SCAN_SCREEN)
+    NavigationService.navigate(ROUTE_NAMES.QR_SCAN_SCREEN)
   }
 
   const onPressAdminScreenButton = () => {
-    NavigationiService.navigate(ROUTE_NAMES.BUILDING_MANAGEMENT_SCREEN)
+    NavigationService.navigate(ROUTE_NAMES.BUILDING_MANAGEMENT_SCREEN)
   }
 
   const onPressMyInfoButton = () => {
-    NavigationiService.navigate(ROUTE_NAMES.MY_INFO_SCREEN)
+    NavigationService.navigate(ROUTE_NAMES.MY_INFO_SCREEN)
   }
 
   return (

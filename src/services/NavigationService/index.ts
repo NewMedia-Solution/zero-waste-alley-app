@@ -1,6 +1,6 @@
 import { StackActions } from '@react-navigation/native'
 
-export class NavigationiService {
+export class NavigationService {
   static _navigation: any
 
   static init(navigation: any) {

@@ -11,7 +11,7 @@ import {
 import logo from '../../../../../assets/images/logo.png'
 import { Colors, FontFamily } from '../../../../Constants'
 import { useDispatch } from 'react-redux'
-import { NavigationiService } from '../../../../services/NavigationiService'
+import { NavigationService } from '../../../../services/NavigationService'
 import { ROUTE_NAMES } from '../../../../RouteNames'
 
 export const LoginComponent = () => {
@@ -23,19 +23,19 @@ export const LoginComponent = () => {
   const onPressLoginButton = () => {}
 
   const onPressFindIdButton = () => {
-    NavigationiService.navigate(ROUTE_NAMES.FIND_ACCOUNT_SCREEN, {
+    NavigationService.navigate(ROUTE_NAMES.FIND_ACCOUNT_SCREEN, {
       via: 'findId',
     })
   }
 
   const onPressFindPasswordButton = () => {
-    NavigationiService.navigate(ROUTE_NAMES.FIND_ACCOUNT_SCREEN, {
+    NavigationService.navigate(ROUTE_NAMES.FIND_ACCOUNT_SCREEN, {
       via: 'findPassword',
     })
   }
 
   const onPressSignUpButton = () => {
-    NavigationiService.navigate(ROUTE_NAMES.SIGN_UP_SCREEN)
+    NavigationService.navigate(ROUTE_NAMES.SIGN_UP_SCREEN)
   }
 
   return (
