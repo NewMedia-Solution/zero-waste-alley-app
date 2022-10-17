@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { hidePopup } from '../../../redux/modules/Modal'
 import { appScreen, Colors, FontFamily } from '../../../Constants'
 
-export const DefaultPopup: IDefaultPopup = ({ title, content }) => {
+export const DefaultPopup: IDefaultPopup = ({ title, content, onPress }) => {
   const dispatch = useDispatch()
 
   const isShowing = useSelector<any>(
@@ -15,6 +15,7 @@ export const DefaultPopup: IDefaultPopup = ({ title, content }) => {
 
   const onPressButton = () => {
     dispatch(hidePopup())
+    onPress?.()
   }
 
   return (
