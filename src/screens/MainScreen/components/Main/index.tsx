@@ -6,10 +6,15 @@ import { Colors } from '../../../../Constants'
 import { ROUTE_NAMES } from '../../../../RouteNames'
 import { NavigationService } from '../../../../services/NavigationService'
 import { FontFamily } from '../../../../Constants'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppState } from '../../../../redux/modules/ReduxModuleTypes'
 
 export const MainComponent = () => {
   const dispatch = useDispatch()
+
+  const userName = useSelector<AppState, string | null>(
+    (state) => state.User.name
+  )
 
   const onPressScanButton = () => {
     NavigationService.navigate(ROUTE_NAMES.QR_SCAN_SCREEN)
@@ -27,7 +32,7 @@ export const MainComponent = () => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Image style={styles.logo} source={logo} />
-        <Text style={styles.title}>수정님,</Text>
+        <Text style={styles.title}>{userName ?? '사용자'}님,</Text>
         <Text style={styles.title}>안녕하세요</Text>
       </View>
       <View style={styles.bottomContainer}>
