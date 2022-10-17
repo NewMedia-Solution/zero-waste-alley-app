@@ -10,7 +10,9 @@ const get: Get = async (path) => {
     },
   }
 
-  const response = await fetch(path, params)
+  const fullPath = SERVER_URL + path
+
+  const response = await fetch(fullPath, params)
   const json = await response.json()
 
   return { response, json }
