@@ -1,3 +1,5 @@
+import { RESIDENT_APPROVAL_STATE } from '../../../Enums'
+
 export type BuildingInfoJson = {
   address1: string
   address2: string
@@ -14,8 +16,24 @@ export type BuildingInfo = {
 
 export type BuildingList = BuildingInfo[]
 
-export type AllStates = {
-  buildingList: BuildingList
+export type ResidentInfoJson = {
+  member_id: string
+  approval_state: RESIDENT_APPROVAL_STATE
+  room_num: number
 }
 
-export type AnyStates = BuildingList
+export type ResidentListJson = ResidentInfoJson[]
+
+export type ResidentInfo = {
+  residentId: string
+  approvalState: RESIDENT_APPROVAL_STATE
+  roomNumber: number
+}
+export type ResidentList = ResidentInfo[]
+
+export type AllStates = {
+  buildingList: BuildingList
+  residentList: ResidentList
+}
+
+export type AnyStates = BuildingList | ResidentList

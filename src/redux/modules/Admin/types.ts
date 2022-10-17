@@ -18,3 +18,16 @@ export type IRequestBuildingList = () => ThunkAction<
   null,
   Actions.AnyActionTypes
 >
+
+export type RequestResidentListReturnType = {
+  isApiSuccess: boolean
+}
+
+export type IRequestResidentList = (
+  buildingId: string
+) => ThunkAction<
+  Promise<RequestResidentListReturnType>,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>
