@@ -120,4 +120,36 @@ export const requestResidentList: Types.IRequestResidentList =
     }
   }
 
+export const updateResident: Types.IUpdateResident =
+  (approvalState, residentId, buildingId) => async () => {
+    try {
+      const path = '/buildAdmin/updateApState'
+      const body = JSON.stringify({
+        approval_state: approvalState,
+        member_id: residentId,
+        building_id: buildingId,
+      })
+
+      const { response } = await ApiHelper.post(path, body)
+
+      const result: Types.UpdateResidentReturnType = {
+        isApiSuccess: response.ok,
+      }
+
+      if (response.ok) {
+        return result
+      } else {
+        Alert.alert('', '서버 연결에 실패했습니다.')
+
+        return result
+      }
+    } catch (error: any) {
+      Alert.alert('', error.toString())
+
+      return {
+        isApiSuccess: false,
+      }
+    }
+  }
+
 export default reducer
