@@ -16,6 +16,8 @@ export const MainComponent = () => {
     (state) => state.User.name
   )
 
+  const isAdmin = useSelector<AppState, boolean>((state) => state.User.isAdmin)
+
   const onPressScanButton = () => {
     NavigationService.navigate(ROUTE_NAMES.QR_SCAN_SCREEN)
   }
@@ -51,22 +53,24 @@ export const MainComponent = () => {
               <Text style={styles.scanButtonText}>QR 스캔하기</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.adminScreenButton}
-            onPress={onPressAdminScreenButton}
-            underlayColor={Colors.green2}
-          >
-            <View style={styles.adminScreenButtonContentContainer}>
-              <Text style={styles.adminScreenButtonText}>
-                관리자{'\n'}페이지
-              </Text>
-              <MaterialCommunityIcons
-                name={'account-check'}
-                size={40}
-                color={Colors.white}
-              />
-            </View>
-          </TouchableHighlight>
+          {isAdmin && (
+            <TouchableHighlight
+              style={styles.adminScreenButton}
+              onPress={onPressAdminScreenButton}
+              underlayColor={Colors.green2}
+            >
+              <View style={styles.adminScreenButtonContentContainer}>
+                <Text style={styles.adminScreenButtonText}>
+                  관리자{'\n'}페이지
+                </Text>
+                <MaterialCommunityIcons
+                  name={'account-check'}
+                  size={40}
+                  color={Colors.white}
+                />
+              </View>
+            </TouchableHighlight>
+          )}
         </View>
         <TouchableHighlight
           style={styles.myInfoButton}
@@ -116,7 +120,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.blue,
     borderRadius: 10,
-    marginRight: 20,
   },
   scanButtonContentContainer: {
     flexDirection: 'row',
@@ -135,6 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.green,
     borderRadius: 10,
+    marginLeft: 20,
   },
   adminScreenButtonContentContainer: {
     flexDirection: 'row',
