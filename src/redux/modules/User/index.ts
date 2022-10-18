@@ -31,7 +31,7 @@ export const setUserInfo: Actions.ISetUserInfo = (userInfo) => ({
     email: userInfo.email,
     address: userInfo.address1,
     detailAddress: userInfo.address2,
-    isAdmin: userInfo.adminYn,
+    isAdmin: userInfo.adminYn === 'Y',
   },
 })
 
@@ -80,7 +80,7 @@ export const logout: Types.ILogout = () => async (dispatch) => {
       email: null,
       address1: null,
       address2: null,
-      adminYn: false,
+      adminYn: 'N',
     })
   )
 
