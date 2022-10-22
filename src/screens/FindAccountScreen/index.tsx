@@ -10,7 +10,7 @@ const FindAccountScreen = ({ route }: any) => {
   return route.params.via === 'findId' ? (
     <FindId />
   ) : isVerifiedIdentity ? (
-    <ChangePassword />
+    <ChangePassword id={id} />
   ) : (
     <IdentityVerification
       setIsVerifiedIdentity={setIsVerifiedIdentity}

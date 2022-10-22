@@ -8,12 +8,23 @@ import {
 } from 'react-native'
 import { Colors, FontFamily } from '../../../../Constants'
 import { TitleWithRequiredMark } from '../../../../components/TitleWithRequiredMark'
+import { useDispatch } from 'react-redux'
+import { changePassword } from '../../../../redux/modules/User'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { DefaultPopup } from '../../../../components/Popups/DefaultPopup'
+import { setIsShowingDefaultPopup } from '../../../../redux/modules/Modal'
+import { NavigationService } from '../../../../services/NavigationService'
 
-const ChangePassword = () => {
+const ChangePassword: React.FC<{ id: string }> = ({ id }) => {
+  const dispatch: any = useDispatch()
+
   const [password, setPassword] = useState('')
   const [retypePassword, setRetypePassword] = useState('')
   const [isRetypePasswordValid, setIsRetypePasswordValid] = useState(false)
+
+  const [popupMessage, setPopupMessage] = useState('')
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const [popupOnPress, setPopupOnPress] = useState(() => () => {})
 
   useEffect(() => {
     if (password === retypePassword && retypePassword) {
@@ -23,7 +34,18 @@ const ChangePassword = () => {
     }
   }, [password, retypePassword])
 
-  const onPressChangePasswordButton = () => {}
+  const onPressChangePasswordButton = async () => {
+    const { isApiSuccess, state } = await dispatch(changePassword(id, password))
+
+    if (isApiSuccess && state) {
+      setPopupMessage('패스워드 변경에 성공했습니다.')
+      setPopupOnPress(() => () => NavigationService.popToTop())
+      dispatch(setIsShowingDefaultPopup())
+    } else if (isApiSuccess && !state) {
+      setPopupMessage('패스워드 변경에 실패했습니다.')
+      dispatch(setIsShowingDefaultPopup())
+    }
+  }
 
   const changePasswordButtonDisabled =
     !password || !retypePassword || !isRetypePasswordValid
@@ -32,12 +54,17 @@ const ChangePassword = () => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <TitleWithRequiredMark title={'새로운 패스워드'} />
-        <TextInput style={styles.textInput} onChangeText={setPassword} />
+        <TextInput
+          style={styles.textInput}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
         <TitleWithRequiredMark title={'새로운 패스워드 재입력'} />
         <View>
           <TextInput
             style={styles.textInput}
             onChangeText={setRetypePassword}
+            secureTextEntry={true}
           />
           {isRetypePasswordValid ? (
             <Text style={[styles.comment, { color: Colors.green }]}>
@@ -76,6 +103,7 @@ const ChangePassword = () => {
       >
         <Text style={styles.changePasswordButtonText}>패스워드 변경하기</Text>
       </TouchableHighlight>
+      <DefaultPopup content={popupMessage} onPress={popupOnPress} />
     </View>
   )
 }
