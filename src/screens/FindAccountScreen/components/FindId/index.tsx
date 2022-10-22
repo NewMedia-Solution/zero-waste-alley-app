@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { findId } from '../../../../redux/modules/User'
 import { DefaultPopup } from '../../../../components/Popups/DefaultPopup'
 import { setIsShowingDefaultPopup } from '../../../../redux/modules/Modal'
+import { NavigationService } from '../../../../services/NavigationService'
 
 const FindId = () => {
   const dispatch: any = useDispatch()
@@ -20,12 +21,15 @@ const FindId = () => {
   const [email, setEmail] = useState('')
 
   const [popupMessage, setPopupMessage] = useState('')
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const [popupOnPress, setPopupOnPress] = useState(() => () => {})
 
   const onPressFindIdButton = async () => {
     const { isApiSuccess, id, message } = await dispatch(findId(name, email))
 
     if (isApiSuccess && id) {
       setPopupMessage(name + '님의 아이디는 ' + id + '입니다.')
+      setPopupOnPress(() => () => NavigationService.popToTop())
       dispatch(setIsShowingDefaultPopup())
     } else if (isApiSuccess && message) {
       setPopupMessage(message)
@@ -56,7 +60,7 @@ const FindId = () => {
       >
         <Text style={styles.findIdButtonText}>아이디 찾기</Text>
       </TouchableHighlight>
-      <DefaultPopup content={popupMessage} />
+      <DefaultPopup content={popupMessage} onPress={popupOnPress} />
     </View>
   )
 }
