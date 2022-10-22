@@ -42,7 +42,7 @@ export const MainComponent = () => {
           <TouchableHighlight
             style={styles.scanButton}
             onPress={onPressScanButton}
-            underlayColor={Colors.blue2}
+            underlayColor={Colors.green2}
           >
             <View style={styles.scanButtonContentContainer}>
               <MaterialCommunityIcons
@@ -57,7 +57,7 @@ export const MainComponent = () => {
             <TouchableHighlight
               style={styles.adminScreenButton}
               onPress={onPressAdminScreenButton}
-              underlayColor={Colors.green2}
+              underlayColor={Colors.blue2}
             >
               <View style={styles.adminScreenButtonContentContainer}>
                 <Text style={styles.adminScreenButtonText}>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     height: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.green,
     borderRadius: 10,
   },
   scanButtonContentContainer: {
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     height: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.green,
+    backgroundColor: Colors.blue,
     borderRadius: 10,
     marginLeft: 20,
   },
