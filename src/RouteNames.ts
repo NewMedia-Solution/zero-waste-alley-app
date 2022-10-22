@@ -5,6 +5,7 @@ export const ROUTE_NAMES = {
   MY_INFO_SCREEN: 'MyInfoScreen',
   QR_SCAN_SCREEN: 'QRScanScreen',
   QR_CODE_INPUT_SCREEN: 'QRCodeInputScreen',
+  UNLOCK_SCREEN: 'UnlockScreen',
   BUILDING_MANAGEMENT_SCREEN: 'BuildingManagementScreen',
   RESIDENT_MANAGEMENT_SCREEN: 'ResidentManagementScreen',
 }

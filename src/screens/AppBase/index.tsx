@@ -88,6 +88,11 @@ const AppBase = () => {
           options={navigationOptions('직접 등록')}
         />
         <Stack.Screen
+          name={ROUTE_NAMES.UNLOCK_SCREEN}
+          component={Routes.UnlockScreen}
+          options={navigationOptions('')}
+        />
+        <Stack.Screen
           name={ROUTE_NAMES.BUILDING_MANAGEMENT_SCREEN}
           component={Routes.BuildingManagementScreen}
           options={navigationOptions('관리 건물')}
