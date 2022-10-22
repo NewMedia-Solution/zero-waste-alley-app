@@ -28,8 +28,10 @@ export const DefaultPopup: IDefaultPopup = ({ title, content, onPress }) => {
       backdropColor={'black'}
     >
       <View style={styles.container}>
-        {title && <Text style={styles.title}>{title}</Text>}
-        <Text style={styles.content}>{content}</Text>
+        <View style={styles.topContainer}>
+          {title !== undefined && <Text style={styles.title}>{title}</Text>}
+          <Text style={styles.content}>{content}</Text>
+        </View>
         <TouchableHighlight
           style={styles.buttonContainer}
           onPress={onPressButton}
@@ -45,12 +47,17 @@ export const DefaultPopup: IDefaultPopup = ({ title, content, onPress }) => {
 const styles = StyleSheet.create({
   container: {
     width: appScreen.width - 40,
-    paddingHorizontal: 10,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     paddingVertical: 5,
+    paddingHorizontal: 10,
     backgroundColor: Colors.white,
     borderRadius: 5,
+  },
+  topContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
   },
   title: {
     marginTop: 15,
