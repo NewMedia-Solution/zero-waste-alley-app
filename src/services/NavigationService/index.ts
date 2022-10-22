@@ -16,4 +16,8 @@ export class NavigationService {
   static popToTop() {
     this._navigation.dispatch(StackActions.popToTop())
   }
+
+  static pop(count: number) {
+    this._navigation.dispatch(StackActions.pop(count))
+  }
 }
