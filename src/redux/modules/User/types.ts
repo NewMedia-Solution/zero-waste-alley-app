@@ -85,6 +85,21 @@ export type IIdentityVerification = (
   Actions.AnyActionTypes
 >
 
+export type ChangePasswordReturnType = {
+  isApiSuccess: boolean
+  state?: boolean
+}
+
+export type IChangePassword = (
+  id: string,
+  password: string
+) => ThunkAction<
+  Promise<IdentityVerificationReturnType>,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>
+
 export type LoginReturnType = {
   isApiSuccess: boolean
   state?: boolean
