@@ -8,12 +8,30 @@ import {
 } from 'react-native'
 import { Colors, FontFamily } from '../../../../Constants'
 import { TitleWithRequiredMark } from '../../../../components/TitleWithRequiredMark'
+import { useDispatch } from 'react-redux'
+import { findId } from '../../../../redux/modules/User'
+import { DefaultPopup } from '../../../../components/Popups/DefaultPopup'
+import { setIsShowingDefaultPopup } from '../../../../redux/modules/Modal'
 
 const FindId = () => {
+  const dispatch: any = useDispatch()
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  const onPressFindIdButton = () => {}
+  const [popupMessage, setPopupMessage] = useState('')
+
+  const onPressFindIdButton = async () => {
+    const { isApiSuccess, id, message } = await dispatch(findId(name, email))
+
+    if (isApiSuccess && id) {
+      setPopupMessage(name + '님의 아이디는 ' + id + '입니다.')
+      dispatch(setIsShowingDefaultPopup())
+    } else if (isApiSuccess && message) {
+      setPopupMessage(message)
+      dispatch(setIsShowingDefaultPopup())
+    }
+  }
 
   const findIdButtonDisabled = !name || !email
 
@@ -38,6 +56,7 @@ const FindId = () => {
       >
         <Text style={styles.findIdButtonText}>아이디 찾기</Text>
       </TouchableHighlight>
+      <DefaultPopup content={popupMessage} />
     </View>
   )
 }
