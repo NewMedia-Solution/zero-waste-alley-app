@@ -5,6 +5,8 @@ export type UserInfoJson = {
   email: string | null
   address1: string | null
   address2: string | null
+  zipCode: string | null
+  roomNum: string | null
   adminYn: string
 }
 
@@ -14,7 +16,9 @@ export type UserInfo = {
   phoneNumber: string | null
   email: string | null
   address: string | null
+  zoneCode: string | null
   detailAddress: string | null
+  unit: string | null
   isAdmin: boolean
 }
 
@@ -25,7 +29,9 @@ export type AllStates = {
   phoneNumber: string | null
   email: string | null
   address: string | null
+  zoneCode: string | null
   detailAddress: string | null
+  unit: string | null
   isAdmin: boolean
 }
 

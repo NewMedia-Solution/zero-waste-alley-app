@@ -30,7 +30,9 @@ export const setUserInfo: Actions.ISetUserInfo = (userInfo) => ({
     phoneNumber: userInfo.phoneNum,
     email: userInfo.email,
     address: userInfo.address1,
+    zoneCode: userInfo.zipCode,
     detailAddress: userInfo.address2,
+    unit: userInfo.roomNum,
     isAdmin: userInfo.adminYn === 'Y',
   },
 })
@@ -42,7 +44,9 @@ const initialState: States.AllStates = {
   phoneNumber: null,
   email: null,
   address: null,
+  zoneCode: null,
   detailAddress: null,
+  unit: null,
   isAdmin: false,
 }
 
@@ -60,7 +64,9 @@ const reducer: Types.IReducer = (state = initialState, action) => {
         phoneNumber: action.payload.phoneNumber,
         email: action.payload.email,
         address: action.payload.address,
+        zoneCode: action.payload.zoneCode,
         detailAddress: action.payload.detailAddress,
+        unit: action.payload.unit,
         isAdmin: action.payload.isAdmin,
       }
     default:
@@ -80,6 +86,8 @@ export const logout: Types.ILogout = () => async (dispatch) => {
       email: null,
       address1: null,
       address2: null,
+      zipCode: null,
+      roomNum: null,
       adminYn: 'N',
     })
   )
