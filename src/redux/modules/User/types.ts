@@ -81,3 +81,26 @@ export type IGetUserInfo = (
   null,
   Actions.AnyActionTypes
 >
+
+export type UpdateUserInfoType = {
+  isApiSuccess: boolean
+  state?: boolean
+  message?: string
+}
+
+export type IUpdateUserInfo = (userInfo: {
+  id: string
+  password: string
+  name: string
+  email: string
+  phoneNum: string
+  zipCode: string
+  address1: string
+  address2: string
+  roomNum: string
+}) => ThunkAction<
+  Promise<UpdateUserInfoType>,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>
