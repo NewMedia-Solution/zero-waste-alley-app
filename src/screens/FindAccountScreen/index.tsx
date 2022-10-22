@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ChangePassword from './components/ChangePassword'
 import FindId from './components/FindId'
+import IdentityVerification from './components/IdentityVerification'
 
 const FindAccountScreen = ({ route }: any) => {
-  return route.params.via === 'findPassword' ? <ChangePassword /> : <FindId />
+  const [id, setId] = useState('')
+  const [isVerifiedIdentity, setIsVerifiedIdentity] = useState(false)
+
+  return route.params.via === 'findId' ? (
+    <FindId />
+  ) : isVerifiedIdentity ? (
+    <ChangePassword />
+  ) : (
+    <IdentityVerification
+      setIsVerifiedIdentity={setIsVerifiedIdentity}
+      setVerifiedId={setId}
+    />
+  )
 }
 
 export default FindAccountScreen
