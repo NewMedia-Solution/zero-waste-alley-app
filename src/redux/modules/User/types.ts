@@ -104,3 +104,17 @@ export type IUpdateUserInfo = (userInfo: {
   null,
   Actions.AnyActionTypes
 >
+
+export type CheckQrCodeType = {
+  isApiSuccess: boolean
+  state?: boolean
+}
+
+export type ICheckQrCode = (
+  qrCodeId: string
+) => ThunkAction<
+  Promise<CheckQrCodeType>,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>

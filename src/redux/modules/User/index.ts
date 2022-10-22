@@ -253,3 +253,37 @@ export const updateUserInfo: Types.IUpdateUserInfo = (userInfo) => async () => {
     }
   }
 }
+
+export const checkQrCode: Types.ICheckQrCode =
+  (qrCodeId) => async (dispatch, getState) => {
+    try {
+      const userId = getState().User.id
+      const path = '/v1/api/qr/Useqr'
+      const body = JSON.stringify({
+        id: userId,
+        qid: qrCodeId,
+      })
+
+      const { response, json } = await ApiHelper.post(path, body)
+
+      const result: Types.CheckQrCodeType = {
+        isApiSuccess: response.ok,
+      }
+
+      if (response.ok) {
+        result.state = json.state
+
+        return result
+      } else {
+        Alert.alert('', '서버 연결에 실패했습니다.')
+
+        return result
+      }
+    } catch (error: any) {
+      Alert.alert('', error.toString())
+
+      return {
+        isApiSuccess: false,
+      }
+    }
+  }
