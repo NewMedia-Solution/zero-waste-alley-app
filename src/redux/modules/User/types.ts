@@ -53,6 +53,22 @@ export type ISignUp = (userInfo: {
   Actions.AnyActionTypes
 >
 
+export type FindIdReturnType = {
+  isApiSuccess: boolean
+  id?: boolean
+  message?: string
+}
+
+export type IFindId = (
+  name: string,
+  email: string
+) => ThunkAction<
+  Promise<FindIdReturnType>,
+  AppState,
+  null,
+  Actions.AnyActionTypes
+>
+
 export type LoginReturnType = {
   isApiSuccess: boolean
   state?: boolean
