@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Image,
   StyleSheet,
@@ -13,14 +13,26 @@ import { Colors, FontFamily } from '../../../../Constants'
 import { useDispatch } from 'react-redux'
 import { NavigationService } from '../../../../services/NavigationService'
 import { ROUTE_NAMES } from '../../../../RouteNames'
+import { login } from '../../../../redux/modules/User'
+import { setIsShowingDefaultPopup } from '../../../../redux/modules/Modal'
+import { DefaultPopup } from '../../../../components/Popups/DefaultPopup'
 
 export const LoginComponent = () => {
-  const dispatch = useDispatch()
+  const dispatch: any = useDispatch()
 
   const [id, setId] = useState('')
   const [password, setPassword] = useState('')
 
-  const onPressLoginButton = () => {}
+  const [popupMessage, setPopupMessage] = useState('')
+
+  const onPressLoginButton = async () => {
+    const { isApiSuccess, state, message } = await dispatch(login(id, password))
+
+    if (isApiSuccess && !state) {
+      setPopupMessage(message)
+      dispatch(setIsShowingDefaultPopup())
+    }
+  }
 
   const onPressFindIdButton = () => {
     NavigationService.navigate(ROUTE_NAMES.FIND_ACCOUNT_SCREEN, {
@@ -54,6 +66,7 @@ export const LoginComponent = () => {
           style={styles.password}
           placeholder={'비밀번호'}
           placeholderTextColor={Colors.gray2}
+          secureTextEntry={true}
           onChangeText={setPassword}
         />
         <TouchableHighlight
@@ -89,6 +102,7 @@ export const LoginComponent = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <DefaultPopup content={popupMessage} />
     </View>
   )
 }
