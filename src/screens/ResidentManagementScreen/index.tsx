@@ -74,7 +74,7 @@ const ResidentManagementScreen = () => {
         return (
           <TouchableHighlight
             style={styles.approveButton}
-            underlayColor={Colors.lightGreen2}
+            underlayColor={Colors.green2}
             onPress={onPress(RESIDENT_APPROVAL_STATE.CONFIRM, residentId)}
           >
             <Text style={styles.buttonText}>승인</Text>
@@ -84,7 +84,7 @@ const ResidentManagementScreen = () => {
         return (
           <TouchableHighlight
             style={styles.removeButton}
-            underlayColor={Colors.red2}
+            underlayColor={Colors.gray4}
             onPress={onPress(RESIDENT_APPROVAL_STATE.REMOVE, residentId)}
           >
             <Text style={styles.buttonText}>삭제</Text>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 5,
-    backgroundColor: Colors.lightGreen,
+    backgroundColor: Colors.green,
   },
   removeButton: {
     alignItems: 'center',
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 5,
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.gray3,
   },
   buttonText: {
     fontFamily: FontFamily.medium,
     fontSize: 14,
-    color: Colors.black,
+    color: Colors.white,
   },
   itemContainer: {
     flexDirection: 'row',
