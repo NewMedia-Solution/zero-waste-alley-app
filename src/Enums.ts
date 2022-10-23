@@ -12,6 +12,6 @@ export enum UNLOCK_STATE {
 }
 
 export enum BLUETOOTH_COMMAND {
-  UNLOCK = 'o',
-  LOCK = 'x',
+  UNLOCK = 'x',
+  LOCK = 'o',
 }
