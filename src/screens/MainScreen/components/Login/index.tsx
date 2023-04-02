@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -51,31 +52,36 @@ export const LoginComponent = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <Image style={styles.logo} source={logo} />
-      </View>
-      <View style={styles.bottomContainer}>
-        <TextInput
-          style={styles.id}
-          placeholder={'아이디'}
-          placeholderTextColor={Colors.gray2}
-          onChangeText={setId}
-        />
-        <TextInput
-          style={styles.password}
-          placeholder={'비밀번호'}
-          placeholderTextColor={Colors.gray2}
-          secureTextEntry={true}
-          onChangeText={setPassword}
-        />
-        <TouchableHighlight
-          style={styles.loginButton}
-          onPress={onPressLoginButton}
-          underlayColor={Colors.green2}
-        >
-          <Text style={styles.loginButtonText}>LOGIN</Text>
-        </TouchableHighlight>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <>
+        <View style={styles.topContainer}>
+          <Image style={styles.logo} source={logo} />
+        </View>
+        <View style={styles.bottomContainer}>
+          <TextInput
+            style={styles.id}
+            placeholder={'아이디'}
+            placeholderTextColor={Colors.gray2}
+            onChangeText={setId}
+          />
+          <TextInput
+            style={styles.password}
+            placeholder={'비밀번호'}
+            placeholderTextColor={Colors.gray2}
+            secureTextEntry={true}
+            onChangeText={setPassword}
+          />
+          <TouchableHighlight
+            style={styles.loginButton}
+            onPress={onPressLoginButton}
+            underlayColor={Colors.green2}
+          >
+            <Text style={styles.loginButtonText}>LOGIN</Text>
+          </TouchableHighlight>
+        </View>
         <View style={styles.bottomButtonContainer}>
           <TouchableOpacity
             style={styles.bottomButton}
@@ -101,9 +107,9 @@ export const LoginComponent = () => {
             <Text style={styles.bottomButtonText}>회원가입</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      <DefaultPopup content={popupMessage} />
-    </View>
+        <DefaultPopup content={popupMessage} />
+      </>
+    </ScrollView>
   )
 }
 
@@ -111,9 +117,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 40,
-    alignItems: 'center',
-    justifyContent: 'space-between',
     backgroundColor: Colors.white,
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
   topContainer: {
     width: '100%',
