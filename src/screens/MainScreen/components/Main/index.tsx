@@ -6,12 +6,10 @@ import { Colors } from '../../../../Constants'
 import { ROUTE_NAMES } from '../../../../RouteNames'
 import { NavigationService } from '../../../../services/NavigationService'
 import { FontFamily } from '../../../../Constants'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { AppState } from '../../../../redux/modules/ReduxModuleTypes'
 
 export const MainComponent = () => {
-  const dispatch = useDispatch()
-
   const userName = useSelector<AppState, string | null>(
     (state) => state.User.name
   )

@@ -105,13 +105,15 @@ const UnlockScreen = () => {
   }
 
   const startLock = async () => {
+    if (!unlockedDevice) return
+
     const isComplete = await bluetoothWrite(
-      unlockedDevice!,
+      unlockedDevice,
       BLUETOOTH_COMMAND.LOCK
     )
 
     if (isComplete) {
-      await bluetoothDisConnect(unlockedDevice!)
+      await bluetoothDisConnect(unlockedDevice)
 
       showPopup('잠금장치 잠금에 성공했습니다.', undefined, () => () => {
         NavigationService.popToTop()
